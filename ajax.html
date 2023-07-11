@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+
+    <form class="form"> 
+
+
+    <input type="text" id="name" placeholder="nome">
+    <input type="text" id="job" placeholder="nome">
+
+    <button> Cadastrar</button>
+
+</form>
+
+    <script> 
+
+const name = document.getElementById("name");
+const job = document.getElementById("job");
+const form  = document.querySelector(".form");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let dados = {
+        name: name.value,
+        job: job.value
+    }
+
+    fetch("https://reqres.in/api/users", {
+        method: "POST",
+        body: JSON.stringify(dados)
+    })
+    .then((response) => {
+        return response.json()
+    }) 
+    .then((response) => {
+         setTimeout(() => {
+ alert("cadastrado com sucesso")
+         }, 2000)
+    })
+})
+
+    
+    </script>
+    
+</body>
+</html>
